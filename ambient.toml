@@ -1,0 +1,54 @@
+[package]
+id = "fvgtqbj7ignzyqb2pb5lh2lll24foikk"
+name = "mushroom-game"
+version = "0.0.1"
+content = { type = "Playable" }
+ambient_version = "0.3.1"
+
+[dependencies]
+base_assets = { deployment = "79plwEq1A0N3t0ExBOMTPM" }
+character_animation = { deployment = "hlFCSeYRoWqVc1RuCK3yt" }
+dead_meets_lead_content = { deployment = "5emfUlpXvbIAd7mZj2o2GE" }
+unit = { deployment = "36mptzibAMgbSyIJaHMkbs" }
+game_object = { deployment = "B6UuAl7IQhpRPmQs1pAfp" }
+character_movement = { deployment = "64TvDNfdV0wYQTjc5paOYj" }
+orbit_camera = { deployment = "5bKKHjDG65jspZfUz3owM" }
+
+
+[enums.GachaKind]
+description = "Describes the kind of gacha"
+[enums.GachaKind.members]
+Knife = "Knife"
+Clothes = "Clothes"
+
+[enums.GachaRewardKind]
+description = "Describes the reward of gacha"
+[enums.GachaRewardKind.members]
+None = "None"
+Normal = "Normal"
+Rare = "Rare"
+
+
+[messages.StartGacha]
+description = "Start a gacha"
+fields = { kind = "GachaKind", amount = "U8" }
+
+[messages.GachaResult]
+description = "Gacha result"
+fields = { kind = "GachaKind", reward = "GachaRewardKind" }
+
+[messages.Click]
+fields = { orig = "Vec3", dir = "Vec3" }
+
+
+[components.run_to]
+type = "Vec3"
+attributes = ["Networked", "Debuggable"]
+
+[components.attack]
+type = "EntityId"
+attributes = ["Networked", "Debuggable"]
+
+[components.gacha_result]
+type = "String"
+attributes = ["Networked", "Debuggable"]
